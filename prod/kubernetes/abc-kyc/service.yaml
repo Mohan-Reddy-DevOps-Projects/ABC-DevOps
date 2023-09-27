@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: abc-ENV-kyc
+  name: abc-ENV-kyc
+spec:
+  type: ClusterIP
+  ports:
+  - name: abc-ENV-kyc
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: abc-ENV-kyc

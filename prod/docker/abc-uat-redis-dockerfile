@@ -1,0 +1,15 @@
+FROM registry.access.redhat.com/ubi9/ubi:latest as BUILD
+RUN yum update -y && \
+    yum install -y wget gcc gcc-c++
+RUN mkdir -p /etc/redis && \
+    cd /etc/redis
+RUN wget https://download.redis.io/releases/redis-6.0.9.tar.gz && \
+    tar -xvf  redis-6.0.9.tar.gz -C /etc/redis/ && \
+    cd /etc/redis/
+RUN rm redis-6.0.9.tar.gz
+WORKDIR /etc/redis/redis-6.0.9
+RUN make
+RUN make install
+WORKDIR /etc/redis/
+EXPOSE 6379
+CMD ["redis-server", "/etc/redis/redis-6.0.9/redis.conf"]
