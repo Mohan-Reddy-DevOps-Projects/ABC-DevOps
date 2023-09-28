@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: abc-ENV-kyc
+  name: abc-ENV-kyc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: abc-ENV-kyc
+  template:
+    metadata:
+      labels:
+        app: abc-ENV-kyc
+    spec:
+      containers:
+      - image: IMAGE:LATEST
+        name: abc-ENV-kyc
+        ports:
+        - containerPort: 8080
+        command: ["/opt/tomcat/bin/catalina.sh"]
+        args: ["run"]
+        env:
+        - name: TZ
+          value: Asia/Kolkata
+        envFrom:
+        - secretRef:
+            name: abc-ENV-common-app-properties
+        - secretRef:
+            name: abc-ENV-mf-pl-la-common-app-properties
+        - secretRef:
+            name: abc-ENV-pl-app-properties
