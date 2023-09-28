@@ -1,0 +1,10 @@
+FROM registry.access.redhat.com/ubi9/ubi:latest
+RUN yum update -y \
+    && yum -y install java-17-openjdk \
+    && java -version
+RUN useradd --system -U --create-home --home-dir /opt/tomcat -s /bin/false tomcat
+WORKDIR /opt/tomcat
+USER tomcat
+EXPOSE 8080
+COPY target/*.jar /opt/tomcat/service.jar
+CMD ["java", "-jar", "/opt/tomcat/service.jar"]

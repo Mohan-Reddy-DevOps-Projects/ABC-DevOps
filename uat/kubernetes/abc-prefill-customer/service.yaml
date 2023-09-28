@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: abc-ENV-prefill-customer
+  name: abc-ENV-prefill-customer
+spec:
+  type: ClusterIP
+  ports:
+  - name: abc-ENV-prefill-customer
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: abc-ENV-prefill-customer

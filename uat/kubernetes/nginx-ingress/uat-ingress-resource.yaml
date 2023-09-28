@@ -1,0 +1,173 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: abc-nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "35.200.135.38.nip.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/abc-login"
+        backend:
+          service:
+            name: abc-uat-login
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-healthinsurance"
+        backend:
+          service:
+            name: abc-uat-healthinsurance
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-termplan"
+        backend:
+          service:
+            name: abc-uat-termplan
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/businessloan"
+        backend:
+          service:
+            name: abc-uat-businessloan
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-customer"
+        backend:
+          service:
+            name: abc-uat-customer
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/homeloan"
+        backend:
+          service:
+            name: abc-uat-homeloan 
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-life-insurance-child-plan"
+        backend:
+          service:
+            name: abc-uat-life-insurance-child-plan
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-life-insurance-quiz"
+        backend:
+          service:
+            name: abc-uat-life-insurance-quiz
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-pl-customer"
+        backend:
+          service:
+            name: abc-uat-pl-customer
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/saveRetirementUlip-plan"
+        backend:
+          service:
+            name: abc-uat-saveretirementulip-plan
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-compound-calculator"
+        backend:
+          service:
+            name: abc-uat-compound-calculator
+            port:
+              number: 8080     
+      - pathType: Prefix
+        path: "/abc-account"
+        backend:
+          service:
+            name: abc-uat-account
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/commonservice"
+        backend:
+          service:
+            name: abc-uat-commonservice
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-credit-vas"
+        backend:
+          service:
+            name: abc-uat-credit-vas
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-health-insurance-calculator"
+        backend:
+          service:
+            name: abc-uat-health-insurance-calculator
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-kyc"
+        backend:
+          service:
+            name: abc-uat-kyc
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/oneabc-loan-generation"
+        backend:
+          service:
+            name: abc-uat-loan-generation
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/loandisbursal"
+        backend:
+          service:
+            name: abc-uat-loandisbursal
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/mutualfund"
+        backend:
+          service:
+            name: abc-uat-mutualfund
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/prefill-customer"
+        backend:
+          service:
+            name: abc-uat-prefill-customer
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-securities"
+        backend:
+          service:
+            name: abc-uat-securities
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-dha"
+        backend:
+          service:
+            name: abc-uat-dha
+            port:
+              number: 8080
+      - pathType: Prefix
+        path: "/abc-digigold"
+        backend:
+          service:
+            name: abc-uat-digigold
+            port:
+              number: 8080

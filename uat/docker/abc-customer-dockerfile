@@ -1,0 +1,16 @@
+FROM registry.access.redhat.com/ubi9/ubi:latest
+RUN yum update -y \
+    && yum -y install java-17-openjdk \
+    && java -version
+RUN useradd --system -U --create-home --home-dir /opt/tomcat -s /bin/false tomcat
+ARG TOMCAT_VERSION=10.1.13
+RUN curl -O https://downloads.apache.org/tomcat/tomcat-10/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz \
+&& tar xvf apache-tomcat-${TOMCAT_VERSION}.tar.gz -C /opt/tomcat/ --strip-components=1 \
+&& rm apache-tomcat-${TOMCAT_VERSION}.tar.gz
+COPY target/abc-customer.war /opt/tomcat/webapps/abc-customer.war
+RUN chown -R tomcat:tomcat /opt/tomcat/ \
+    && chmod -R u+x /opt/tomcat/bin
+WORKDIR /opt/tomcat
+USER tomcat
+EXPOSE 8080
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]

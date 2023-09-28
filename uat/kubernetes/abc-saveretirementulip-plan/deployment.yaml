@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: abc-ENV-saveretirementulip-plan
+  name: abc-ENV-saveretirementulip-plan
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: abc-ENV-saveretirementulip-plan
+  template:
+    metadata:
+      labels:
+        app: abc-ENV-saveretirementulip-plan
+    spec:
+      containers:
+      - image: IMAGE:LATEST
+        name: abc-ENV-saveretirementulip-plan
+        ports:
+        - containerPort: 8080
+        command: ["/opt/tomcat/bin/catalina.sh"]
+        args: ["run"]
+        envFrom:
+        - secretRef:
+            name: abc-ENV-common-app-properties
+        env:
+        - name: TZ
+          value: Asia/Kolkata     
