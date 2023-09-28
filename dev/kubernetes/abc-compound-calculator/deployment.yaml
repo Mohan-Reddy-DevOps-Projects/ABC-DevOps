@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: abc-ENV-compound-calculator
+  name: abc-ENV-compound-calculator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: abc-ENV-compound-calculator
+  template:
+    metadata:
+      labels:
+        app: abc-ENV-compound-calculator
+    spec:
+      containers:
+      - image: IMAGE:LATEST
+        name: abc-ENV-compound-calculator
+        ports:
+        - containerPort: 8080
+        command: ["/opt/tomcat/bin/catalina.sh"]
+        args: ["run"]
+        env:
+        - name: TZ
+          value: Asia/Kolkata
